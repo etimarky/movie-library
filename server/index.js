@@ -1,5 +1,5 @@
 /**
- * Server class that uses express and creates a simple server to display the data being fetched
+ * Express server class that uses express and creates a simple server to display the data being fetched
  */
 
 import { API } from '../main/axios.js';
