@@ -13,7 +13,7 @@ This project loads API data from various streaming services onto a server. A bas
 ### Compiles and hot-reloads for development
 ```
 Currently, running node index.js within the ./server folder will run the function
-and display this within localhost:5000
+and display this within localhost:8080
 ```
 
 ### Compiles and minifies for production - currently not in use

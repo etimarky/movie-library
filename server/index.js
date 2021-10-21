@@ -1,20 +1,25 @@
-import http from 'http';
+/**
+ * Server class that uses express and creates a simple server to display the data being fetched
+ */
+
 import { API } from '../main/axios.js';
+import express from 'express'
 
+const axios = new API();
+// create new express app and save it as a constant
+const app = express();
+// server configuration
+const PORT = 8080;
 
-let axios = new API();
+//route created for the app with data
+app.get('/', (req, res) => {
 
-let server = http.createServer(function(req, res) {   // 2 - creating server
-     if (req.url == '/data') { //check the URL of the current request
+  return axios.searchDetails('netflix', 'series', '4', 'en').then(response => {
+    res.send(JSON.stringify({ message: response }));
 
-        res.writeHead(200, { 'Content-Type': 'application/json' });
-        return axios.requestData('netflix','movies','1').then(response => {
-          res.write(JSON.stringify({ message: response}));  
-          res.end();  
-        });
-
- }
-});
-server.listen(5000); //3 - listen for any incoming requests
-
-console.log('Node.js web server at port 5000 is running..')
+  })
+})
+// port is listening to requests
+app.listen(PORT, () => {
+  console.log(`Server running at: http://localhost:${PORT}/`)
+})
