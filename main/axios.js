@@ -75,14 +75,15 @@ class API {
   }
 
   // searchNetflix returns any movie/series within the netflix service
-  async searchNetflix() {
+  async searchNetflix(page) {
     this.options = {
       method: 'GET',
       url: 'https://streaming-availability.p.rapidapi.com/search/basic',
       params: {
         country: 'us',
         service: 'netflix',
-        type: 'movie'
+        type: 'movie',
+        page: page
       },
       headers: {
         'x-rapidapi-host': 'streaming-availability.p.rapidapi.com',
@@ -90,7 +91,7 @@ class API {
       }
     }
     return axios.request(this.options).then(function (response) {
-      return response.data.results;
+      return response.data;
     }).catch(function (error) {
       console.error(error);
     });
