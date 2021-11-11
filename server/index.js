@@ -5,8 +5,9 @@
 import { API } from '../main/axios.js';
 import express from 'express'
 import cors from 'cors';
+import { Database } from '../main/database.js';
 
-
+const db = new Database();
 const axios = new API();
 // create new express app and save it as a constant
 const app = express();
@@ -14,30 +15,13 @@ app.use(cors());
 // server configuration
 const PORT = 8080;
 
+app.get('/movies', cors(), (req,res) => {
+  return db.getMovies().then(response => {
+    res.send(JSON.stringify({ message: response }));
 
-let sql = 'SELECT * FROM movie-library';
+  })
+})
 
-//db.all returns all rows
-//db.get returns only 1 row
-//db.rin() allows you to create,insert,delete test
-
-db.all(sql,[], (err, rows) => {
-    if(err) {
-        throw err;
-    }
-    rows.forEach((row) => {
-        console.log(row.imdbID + " " + row.tmdbID);
-    })
-});
-
-// //closes the database
-// db.close((error) => {
-//     if(error){
-//         console.log(error.message);
-//     }
-//     console.log('Database Closed');
-// });
-//route created for the app with data
 
 app.get('/', cors(), (req, res) => {
 
