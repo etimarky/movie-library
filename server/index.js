@@ -13,7 +13,7 @@ const axios = new API();
 const app = express();
 app.use(cors());
 // server configuration
-const PORT = 8080;
+const PORT = 8081;
 
 app.get('/movies', cors(), (req,res) => {
   return db.getMovies().then(response => {
