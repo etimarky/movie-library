@@ -3,7 +3,6 @@ import sqlite3 from 'sqlite3';
 
 const axios = new API();
 const sqlite = sqlite3.verbose();
-const DBSOURCE = "db.sqlite"
 
 //Opens a database in memory
 let db = new sqlite.Database('C:/Users/etima/Downloads/movie-database.db', (error) => {// could potentially change the long sequence to __dirname
@@ -122,7 +121,7 @@ function getStreamingInfo(movie) {
 }
 
 async function populateNetflixData(totalPages) {
-    let count = 255;
+    let count = 353;
     while (count <= totalPages) {
         let response;
         try {
@@ -132,7 +131,7 @@ async function populateNetflixData(totalPages) {
             throw err;
         }
         let results = response.results;
-        // start at 156
+        // start at 353
         console.log(count);
         for (let i = 0; i < results.length; i++) {
             // console.log(JSON.stringify(results[i]));

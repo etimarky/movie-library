@@ -15,6 +15,9 @@ app.use(cors());
 // server configuration
 const PORT = 8081;
 
+app.use(express.json());
+app.use(express.urlencoded());
+
 app.get('/movies', cors(), (req,res) => {
   return db.getMovies().then(response => {
     res.send(JSON.stringify({ message: response }));
@@ -22,9 +25,15 @@ app.get('/movies', cors(), (req,res) => {
   })
 })
 
+app.post('/selected', cors(), (req,res) => {
+  console.log(req.body);
+  return db.updateSelected(req.body).then(response => {
+    res.send(JSON.stringify(({message: response})))
+  })
+})
+
 
 app.get('/', cors(), (req, res) => {
-
   return axios.searchNetflix().then(response => {
     res.send(JSON.stringify({ message: response }));
 
