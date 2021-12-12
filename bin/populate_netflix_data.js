@@ -4,7 +4,7 @@ import sqlite3 from 'sqlite3';
 const axios = new API();
 const sqlite = sqlite3.verbose();
 
-//Opens a database in memory
+// opens a database in memory
 let db = new sqlite.Database('C:/Users/etima/Downloads/movie-database.db', (error) => {// could potentially change the long sequence to __dirname
     if (error) {
         return console.log(error.message);
@@ -12,11 +12,14 @@ let db = new sqlite.Database('C:/Users/etima/Downloads/movie-database.db', (erro
     console.log('Connection Successful');
 });
 
+// function to get the number of pages by parsing the response from API call
+// use this number for iterating through pages to fill DB
 async function getPages() {
     const response = await axios.searchNetflix();
     const totalPages = response.total_pages;
     return totalPages;
 }
+// function for updating the genres within the DB, map number to genre
 function getGenreName(movie) {
     // console.dir(movie.genres);
     let genre = ''
@@ -112,14 +115,14 @@ function getGenreName(movie) {
     }
     return genre;
 }
-
+// updates the streaming info of the movie within the DB, JSON object to string
 function getStreamingInfo(movie) {
     if (movie.streamingInfo !== null) {
         let info = JSON.stringify(movie.streamingInfo);
         return info;
     }
 }
-
+// function to populate database with netflix API data
 async function populateNetflixData(totalPages) {
     let count = 353;
     while (count <= totalPages) {

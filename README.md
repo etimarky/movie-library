@@ -1,22 +1,22 @@
 # movie-library
 ```
-This project loads API data from various streaming services onto a server. A basic http server is created and loads the data that is retrieved from the specific API call. An API object is also created that will be used in our movie-app to call for specific genres and movie/series information.
+This project uses Express to create servers to post data. This data is used for the Movie App to function properly. 
+This was used to populate a database with the Netflix data as well.
+
+Run this project along with the github https://github.com/etimarky/movie-app and a database with the approx. rest API data. 
+The Movie App will be fully functioning alongside Movie Library.
+
+The rest API used is from https://rapidapi.com/movie-of-the-night-movie-of-the-night-default/api/streaming-availability/. 
+
 ```
 ## Project setup
 ```
-1. Run npm init to set up a new or existing npm package
-2. Run npm install to download dependencies
-3. Run npm install http to create the server
-4. Run npm install axios for API calls
+1. Run npm install to download dependencies
 ```
 
-### Compiles and hot-reloads for development
+### Launch
 ```
-Currently, running node index.js within the ./server folder will run the function
-and display this within localhost:8080
+1. cd into server
+2. run node index.js
 ```
 
-### Compiles and minifies for production - currently not in use
-```
-npm run build
-```
